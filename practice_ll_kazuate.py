@@ -6,7 +6,7 @@ def create_random_number():
     戻り値：
      - ランダムな数字
     """
-    pass
+    raise NotImplementedError()
 
 
 def get_player_input(count):
@@ -19,7 +19,7 @@ def get_player_input(count):
     戻り値
      - プレイヤーが入力した正しい数字
     """
-    pass
+    raise NotImplementedError()
 
 
 def check_answer_and_show_message(r, i, count):
@@ -35,7 +35,7 @@ def check_answer_and_show_message(r, i, count):
     戻り値：
      - ゲーム（ループ）が終わるならTrue、ゲームが続くならFalse
     """
-    pass
+    raise NotImplementedError()
 
 
 def main():
