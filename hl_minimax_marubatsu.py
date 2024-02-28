@@ -1,8 +1,8 @@
+import functools
 import time
 
-import pandas as pd
 import numpy as np
-import functools
+import pandas as pd
 from tqdm import tqdm
 
 

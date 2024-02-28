@@ -2,6 +2,7 @@ import copy
 import random
 import time
 import typing
+
 from tqdm import tqdm
 
 STR_SUIT = '♦♥♧♤'
@@ -228,7 +229,7 @@ def main():
             if player_hands[player_id]:
                 print(' ***', 'Player', player_id + 1, '***')
                 if player_id == your_id:
-                    card = player_action(field, player_hands[player_id])
+                    _ = player_action(field, player_hands[player_id])
                     print_field(field)
                     print_hand_stat(player_hands, your_id)
                 else:
