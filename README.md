@@ -6,3 +6,4 @@
 
 # チュートリアル [docs](docs)
  - [docs/how-to-install-python/doc.md](docs/how-to-install-python/doc.md) Pythonのインストール方法
+ - [docs/how-to-run-python-cli/doc.md](docs/how-to-run-python-cli/doc.md) コンソール上でPythonスクリプトを実行する方法
