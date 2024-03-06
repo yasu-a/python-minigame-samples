@@ -111,10 +111,8 @@ Windowsのコマンドプロンプト：
 
 ```python
 for i in range(10):
-    print(i)
+  print(i)
 ```
-
--
 
 > [!NOTE]
 > このプログラムは0から9までの数字を１行ずつ表示するプログラムです。
