@@ -1,3 +1,5 @@
+# ミニマックス法を使った〇×ゲーム
+
 import functools
 import time
 

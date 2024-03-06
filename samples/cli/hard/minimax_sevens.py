@@ -1,3 +1,5 @@
+# ミニマックス法を使った七並べ
+
 import copy
 import random
 import time

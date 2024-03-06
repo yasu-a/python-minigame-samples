@@ -1,3 +1,5 @@
+# 計算クイズ
+
 import math
 import random
 import time

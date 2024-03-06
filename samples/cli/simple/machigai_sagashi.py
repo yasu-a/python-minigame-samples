@@ -1,3 +1,5 @@
+# 間違い探し
+
 import copy
 import random
 import time

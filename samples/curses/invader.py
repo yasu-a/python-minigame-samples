@@ -1,3 +1,6 @@
+# cursesによるインベーダーゲーム
+# コンソールで全画面表示にして実行してください！
+
 import collections
 import curses
 import itertools
