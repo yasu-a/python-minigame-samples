@@ -8,7 +8,7 @@ Codeを使ったほうが快適な場合もあります。
 
 Python用のエディタ（コードの編集をするアプリ）として使う分には、メモ帳に比べればVS Codeで十分です。
 VS CodeをただのエディタとしてPythonプログラムを組むときは、VS
-Codeでプログラムを編集し、「[コンソール上でPythonスクリプトを実行する方法](docs/how-to-run-python-cli/doc.md)」
+Codeでプログラムを編集し、「[コンソール上でPythonスクリプトを実行する方法](../how-to-run-python-cli/doc.md)」
 で紹介した方法で付属のターミナル上でプログラムを実行することになります。
 
 ただ、VS CodeはPython専用のエディタではありません。
