@@ -145,7 +145,7 @@ WindowsアイコンをクリックしてWindowsメニューを表示し、「pyt
 > [!IMPORTANT]
 > Pythonが見つからない場合はPythonをインストールできていません。
 >
-> [コンソール上でのPythonスクリプトの実行](../how-to-run-python-cli/doc.md)
+> [Pythonのインストール](../how-to-install-python/doc.md)
 > を参考にしてPythonをインストールしてください。
 
 Pythonを見つけたら、「ファイルの場所を開く」をクリックします。
