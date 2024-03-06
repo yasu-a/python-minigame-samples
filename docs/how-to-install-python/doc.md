@@ -35,7 +35,7 @@
   ![img](./scr11.png)
   ![img](./scr12.png)
 
-2. 次のコマンドを実行してPythonのバージョンを確認でいます。
+2. 次のコマンドを実行してPythonのバージョンを確認できます。
 
 ```commandline
 python --version
