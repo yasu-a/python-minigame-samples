@@ -10,6 +10,7 @@ cvs = tkinter.Canvas()
 m_pos = np.array([0, 0])
 
 
+# <Motion>イベントはマウスポインタの位置が変化した時しか呼ばれない
 # def move(evt: tkinter.Event):
 #     global m_pos
 #     m_pos = m_pos + ([evt.x, evt.y] - m_pos) * 0.1

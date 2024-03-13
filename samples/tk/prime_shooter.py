@@ -10,13 +10,13 @@ import numpy as np
 PRIMES = 2, 3, 5, 7
 
 
-@dataclass
+@dataclass(frozen=True)
 class Number:
     value: int
     factors: tuple[int, ...]
 
     @classmethod
-    def from_factors(cls, factors: list[int] | tuple[int]):
+    def from_factors(cls, factors: list[int] | tuple[int, ...]):
         assert factors
 
         n = 1
@@ -44,7 +44,7 @@ class Number:
 
 root = tkinter.Tk()
 root.resizable(width=False, height=False)
-root.geometry("300x800")
+root.geometry("200x500")
 
 cvs = tkinter.Canvas(root)
 cvs.pack(fill="both", expand=True)
@@ -66,7 +66,7 @@ class Enemy:
 enemies: list[Enemy] = []
 
 ENEMY_SIDE_MARGIN = 20
-N_ENEMY_SPAWN_LIMIT = 80
+N_ENEMY_SPAWN_LIMIT = 20
 
 
 def spawn_enemy(n=None, pos=None):
@@ -89,27 +89,33 @@ FPS = 40
 ENEMY_VELOCITY_BASE = 30 / FPS
 BEAM_VELOCITY = 200 / FPS
 COLLISION_RADIUS = 15
-ENEMY_SCATTER_RADIUS = 10
-BEAM_HOLD = 0.01
+ENEMY_SCATTER_RADIUS = 30
+BEAM_HOLD = 0.1
 BEAM_MARGIN = 10
 DIFFUSION_GRAVITY_FACTOR = 20000
-DIFFUSE_PROCESS_RADIUS_LIMIT = 100
+DIFFUSION_PROCESS_RADIUS_LIMIT = 100
 
 mb_flag = False
 t_prev_beam_spawned = 0
+score = 0
+stock = 100
 
 
 def main():
+    global score
+    global stock
+
     ts = time.time()
 
     w, h = root.winfo_width(), root.winfo_height()
 
     # Spawn beams
     global t_prev_beam_spawned
-    if mb_flag and time.time() - t_prev_beam_spawned >= BEAM_HOLD:
+    if mb_flag and time.time() - t_prev_beam_spawned >= BEAM_HOLD and stock > 0:
         m_pos = get_mouse_pos()
         beams_pos.append(np.array([m_pos[0], h - BEAM_MARGIN]))
         t_prev_beam_spawned = time.time()
+        stock -= 1
 
     # Spawn enemies
     if random.random() < 0.03:
@@ -133,6 +139,13 @@ def main():
             if np.linalg.norm(e_pos - b_pos) <= COLLISION_RADIUS:
                 col_beams.add(bi)
                 col_enemies.add(ei)
+
+    for ei in col_enemies:
+        e = enemies[ei]
+        score += e.n.value
+        shot_result = e.n.decompose()
+        if shot_result is None:
+            stock += e.n.value
 
     # for ei, e in enumerate(enemies):
     #     if len(e.n.factors) >= 2 and random.random() * FPS < 0.3:
@@ -165,7 +178,7 @@ def main():
         for ee in enemies:
             if e is ee:
                 continue
-            if np.all(e.pos - ee.pos > DIFFUSE_PROCESS_RADIUS_LIMIT):
+            if np.all(e.pos - ee.pos > DIFFUSION_PROCESS_RADIUS_LIMIT):
                 continue
             r = e.pos - ee.pos
             norm_r = np.linalg.norm(r) + 1e-6
@@ -189,11 +202,25 @@ def main():
     for b_pos in beams_pos:
         cvs.create_text(*b_pos, text="|", font=("Consolas", 10), fill="Black")
 
+    def ammo_stock_string(s):
+        p = s % 10
+        if s >= 10 and s % 10 == 0:
+            p = 10
+        s -= p
+        return f"{s // 10:2d} {'|' * p}"
+
     te = time.time()
+    cvs.create_text(
+        0, 0,
+        text=f"SCORE: {score:,}\nAMMO: {ammo_stock_string(stock)}",
+        font=("Consolas", 9),
+        fill="Black",
+        anchor="nw"
+    )
     cvs.create_text(
         0, h,
         text=f"PPS:{1 / (te - ts + 1e-6):5.0f}, NB:{len(beams_pos):4}, NE:{len(enemies):4}",
-        font=("Consolas", 10),
+        font=("Consolas", 8),
         fill="Black",
         anchor="sw"
     )
